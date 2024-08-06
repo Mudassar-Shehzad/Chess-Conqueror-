@@ -160,49 +160,8 @@ function unSelectPiece(square) {
 
 
 
-// function unSelectPiece(square) {
-//     let row = Math.floor((63 - square.id) / 8) + 1;
-//     square.style.backgroundColor = (row % 2 === 0) ?
-//         (square.id % 2 === 0 ? 'gray' : 'white') :
-//         (square.id % 2 === 0 ? 'white' : 'gray');
 
-//     selectedPiece = null;
-//     selectedSquare = null;
-// }
-// function bishopMovement(tSquareId, sPieceId) {
-//     if ((tSquareId === sPieceId + 7 || tSquareId === sPieceId - 7 || tSquareId === sPieceId + 14 || tSquareId === sPieceId - 14 || tSquareId === sPieceId + 21 || tSquareId === sPieceId - 21 || tSquareId === sPieceId + 28 || tSquareId === sPieceId - 28 || tSquareId === sPieceId + 35 || tSquareId === sPieceId - 35 || tSquareId === sPieceId + 42 || tSquareId === sPieceId - 42 || tSquareId === sPieceId + 49 || tSquareId === sPieceId - 49
-//         || tSquareId === sPieceId + 9 || tSquareId === sPieceId - 9 || tSquareId === sPieceId + 18 || tSquareId === sPieceId - 18 || tSquareId === sPieceId + 27 || tSquareId === sPieceId - 27 || tSquareId === sPieceId + 36 || tSquareId === sPieceId - 36 || tSquareId === sPieceId + 45 || tSquareId === sPieceId - 45 || tSquareId === sPieceId + 63 || tSquareId === sPieceId - 63)) {
-
-//             const direction = tSquareId > sPieceId ? 
-//             ((tSquareId - sPieceId) % 9 === 0 ? 9 : 7) : 
-//             ((sPieceId - tSquareId) % 9 === 0 ? -9 : -7); 
-
-//         let currentId = sPieceId + direction;
-
-//         while (currentId !== tSquareId) {
-//             // Check if there's any piece blocking the path
-//             if (document.getElementById(currentId).querySelector('.piece')) {
-//                 return false;
-//             }
-//             currentId += direction;
-//         }
-
-//         return true;
-//     }
-//     return false;
-// }
 function kingMovement(tSquareId, sPieceId) {
-    const possibleMoves = [
-        tSquareId + 1,
-        tSquareId - 1,
-        tSquareId + 6,
-        tSquareId - 7,
-        tSquareId + 10,
-        tSquareId - 10,
-        tSquareId + 8,
-        tSquareId - 8,
-    ];
-    const validMoves = possibleMoves.filter(move => move >= 0 && move < 64);
     if (
         tSquareId === sPieceId + 1 || tSquareId === sPieceId - 1 ||
         tSquareId === sPieceId + 8 || tSquareId === sPieceId - 8 ||
@@ -214,20 +173,6 @@ function kingMovement(tSquareId, sPieceId) {
     return false;
 }
 function knightMovement(tSquareId, sPieceId) {
-    const possibleMoves = [
-        tSquareId + 17,
-        tSquareId - 17,
-        tSquareId + 6,
-        tSquareId - 6,
-        tSquareId + 10,
-        tSquareId - 10,
-        tSquareId + 15,
-        tSquareId - 15,
-    ];
-    const validMoves = possibleMoves.filter(move => move >= 0 && move < 64);
-    knightLegelMove.push(validMoves)
-
-
     // console.log("Valid moves:", validMoves);
     let legelMoves = tSquareId === sPieceId + 17 || tSquareId === sPieceId - 17 || tSquareId === sPieceId + 6 || tSquareId === sPieceId - 6 || tSquareId === sPieceId + 10 || tSquareId === sPieceId - 10 || tSquareId === sPieceId + 15 || tSquareId === sPieceId - 15 ||
         console.log('slj')
@@ -238,26 +183,6 @@ function knightMovement(tSquareId, sPieceId) {
 
 }
 function bishopMovement(tSquareId, sPieceId) {
-    const possibleMoves = [
-        tSquareId + 7,
-        tSquareId - 7,
-        tSquareId + 14,
-        tSquareId - 14,
-        tSquareId + 21,
-        tSquareId - 21,
-        tSquareId + 28,
-        tSquareId - 28,
-        tSquareId + 35,
-        tSquareId - 35,
-        tSquareId + 42,
-        tSquareId + 42,
-        tSquareId - 49,
-        tSquareId - 49,
-        tSquareId - 56,
-        tSquareId - 56,
-    ];
-    const validMoves = possibleMoves.filter(move => move >= 0 && move < 64);
-    knightLegelMove.push(validMoves)
     const boardSize = 8;
     const directions = [-9, -7, 7, 9]; // Diagonal directions
     const currentRow = Math.floor(sPieceId / boardSize);
@@ -329,98 +254,14 @@ function rookMovement(tSquareId, sPieceId) {
 function queenMovement(tSquareId, sPieceId) {
     return bishopMovement(tSquareId, sPieceId) || rookMovement(tSquareId, sPieceId);
 }
-
-// function queenMovement(tSquareId, sPieceId) {
-// const boardSize = 8;
-
-// // Check if the target square is a valid move for the queen
-// if (tSquareId === sPieceId + 1 || tSquareId === sPieceId - 1 ||
-//     tSquareId === sPieceId + 2 || tSquareId === sPieceId - 2 ||
-//     tSquareId === sPieceId + 3 || tSquareId === sPieceId - 3 ||
-//     tSquareId === sPieceId + 4 || tSquareId === sPieceId - 4 ||
-//     tSquareId === sPieceId + 5 || tSquareId === sPieceId - 5 ||
-//     tSquareId === sPieceId + 6 || tSquareId === sPieceId - 6 ||
-//     tSquareId === sPieceId + 8 || tSquareId === sPieceId - 8 ||
-//     tSquareId === sPieceId + 16 || tSquareId === sPieceId - 16 ||
-//     tSquareId === sPieceId + 24 || tSquareId === sPieceId - 24 ||
-//     tSquareId === sPieceId + 32 || tSquareId === sPieceId - 32 ||
-//     tSquareId === sPieceId + 7 || tSquareId === sPieceId - 7 ||
-//     tSquareId === sPieceId + 14 || tSquareId === sPieceId - 14 ||
-//     tSquareId === sPieceId + 21 || tSquareId === sPieceId - 21 ||
-//     tSquareId === sPieceId + 28 || tSquareId === sPieceId - 28 ||
-//     tSquareId === sPieceId + 35 || tSquareId === sPieceId - 35 ||
-//     tSquareId === sPieceId + 42 || tSquareId === sPieceId - 42 ||
-//     tSquareId === sPieceId + 49 || tSquareId === sPieceId - 49 ||
-//     tSquareId === sPieceId + 9 || tSquareId === sPieceId - 9 ||
-//     tSquareId === sPieceId + 18 || tSquareId === sPieceId - 18 ||
-//     tSquareId === sPieceId + 27 || tSquareId === sPieceId - 27 ||
-//     tSquareId === sPieceId + 36 || tSquareId === sPieceId - 36 ||
-//     tSquareId === sPieceId + 45 || tSquareId === sPieceId - 45 ||
-//     tSquareId === sPieceId + 63 || tSquareId === sPieceId - 63
-// ) {
-//     // Determine direction based on relative positions
-//     const direction = tSquareId > sPieceId ?
-//         ((tSquareId - sPieceId) % 8 === 0 ? 8 : 1) :
-//         ((sPieceId - tSquareId) % 8 === 0 ? -8 : -1);
-
-//     let currentId = sPieceId + direction;
-
-//     while (currentId !== tSquareId) {
-//         if (currentId < 1 || currentId >= boardSize * boardSize) return false;
-
-//         // Check if there's any piece blocking the path
-//         if (document.getElementById(currentId).querySelector('.piece')) {
-//             return false;
-//         }
-//         currentId += direction;
-//     }
-
-//     return true;
-// }
-//     // const boardSize = 8;
-//     // const directions = [
-//     //     -1, 1,2, -2,3, -3, 4, -4, 5, -5, 6, -6, - 7, 7  -8, 8, -9, 9, 14, -14, 21, -21, 28, -28, 35, -35, 42, -42, 16, -16, 24, -24, 32, -32, 40, -40, 48, -48, 56, -56, 18, -18, 27, -27, 36, -36, 45, -45, 54, -54, 63, -63
-//     // ];
-
-//     // for (let direction of directions) {
-//     //     let currentId = sPieceId;
-
-//     //     while (true) {
-//     //         currentId += direction;
-
-//     //         if (currentId === tSquareId) {
-//     //             return true;
-//     //         }
-
-//     //         // Check boundaries
-//     //         if (currentId < 0 || currentId >= boardSize * boardSize) {
-//     //             break;
-//     //         }
-
-//     //         // Check row boundaries for horizontal moves
-//     //         if ((direction === -1 && currentId % boardSize === boardSize - 1) ||
-//     //             (direction === 1 && currentId % boardSize === 0)) {
-//     //             break;
-//     //         }
-
-//     //         // Check if there's any piece blocking the path
-//     //         const targetSquare = document.getElementById(currentId);
-//     //         if (targetSquare.querySelector('.piece')) {
-//     //             break;
-//     //         }
-//     //     }
-//     // }
-
-//     return false;
-// }
 function checkForWin() {
     const whiteKing = document.querySelector('.whiteKing');
     const blackKing = document.querySelector('.blackKing');
     if (!whiteKing) {
-        alert('Black wins');
+        showCongratulations('Black')
     }
     if (!blackKing) {
-        alert('White wins');
+        showCongratulations('white')
     }
 }
 
@@ -673,7 +514,7 @@ function clearHighlight() {
 }
 setGame()
 function resetBoard() {
-  
+
 
     startPieces.forEach((piece, index) => {
         const square = document.createElement('div')
@@ -751,3 +592,19 @@ document.getElementById('reset').addEventListener('click', startNewGame);
 
 
 
+function showCongratulations(winner) {
+    const congratsMessage = document.getElementById('congratsMessage');
+    const winnerSpan = document.getElementById('winner');
+    
+    winnerSpan.textContent = winner;
+    congratsMessage.classList.remove('hidden');
+    congratsMessage.classList.add('visible');
+
+    setTimeout(() => {
+        congratsMessage.classList.remove('visible');
+        setTimeout(() => {
+            congratsMessage.classList.add('hidden');
+            startNewGame();
+        }, 500);
+    }, 3000);
+}
