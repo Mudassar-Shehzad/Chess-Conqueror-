@@ -258,10 +258,10 @@ function checkForWin() {
     const whiteKing = document.querySelector('.whiteKing');
     const blackKing = document.querySelector('.blackKing');
     if (!whiteKing) {
-        showCongratulations('Black')
+        showCongratulations('Player Black')
     }
     if (!blackKing) {
-        showCongratulations('white')
+        showCongratulations('Player White')
     }
 }
 
