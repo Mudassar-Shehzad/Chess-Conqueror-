@@ -17,3 +17,5 @@ A fully functional Chess Game where players can make valid chess moves on a trad
 1. Clone the repository:
    ```bash
    git clone https://github.com/Mudassar-Shehzad/Chess-Conqueror.git
+
+   
